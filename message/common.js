@@ -40,7 +40,7 @@ async function relayMessage(bot, msg, user) {
     let contact =
         (await bot.Contact.find({ name: nickName })) ||
         (await bot.Contact.find({ alias: name }))
-    await contact.say(`${user}想对你说:\n${msgContent}`)
+    await contact.say(`${user}对你说:\n${msgContent}`)
     console.log(`[转告消息]: ${user} 给 ${name}说: ${msgContent}`)
     const sendMsg = '已发送'
     utils.sendMsgLog('转告消息', user, sendMsg)
