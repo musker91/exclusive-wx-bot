@@ -1,6 +1,7 @@
 const { WechatyBuilder } = require('wechaty')
 const config = require('../config')
-const { sendMsgLog, receivedMsgLog } = require('./message')
+const { heNames, sheNames, onHandlerReceiveMsg } = require('../message')
+const { receivedMsgLog, sendMsgLog } = require('../utils')
 
 // 延时函数，防止检测出类似机器人行为操作
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -37,6 +38,11 @@ function onLogout(user) {
   console.log(`小助手${user} 已经登出`)
 }
 
+function isItHim(name) {
+  const names = [...heNames, ...sheNames]
+  return names.includes(name)
+}
+
 // 监听对话
 async function onMessage(msg) {
   const contact = msg.talker() // 发消息人
@@ -52,18 +58,22 @@ async function onMessage(msg) {
   if (room) {
     return
   }
-  
   // 暂时先不处理非文本消息
   if (!isText) {
     return
   }
-
-  receivedMsgLog(alias, content)
-  // process 
-  await delay(2000)
-  const sendMsg = `发送内容: ${content}`
-  await contact.say(sendMsg)
-  sendMsgLog('自动', alias, sendMsg)
+  // 不是指定对象，不处理对应消息
+  if (!isItHim(alias)) {
+    return
+  }
+  try {
+    receivedMsgLog(alias, content)
+    await delay(2000)
+    const sayMsg = await onHandlerReceiveMsg(content, alias)
+    contact.say(sayMsg)
+  } catch (e) {
+    console.warn('处理消息出现异常: ', msg)
+  }
 }
 
 bot.on('scan', onScan)
