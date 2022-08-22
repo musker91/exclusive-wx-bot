@@ -1,26 +1,14 @@
 const config = require('../config')
+const msgCommon = require('./common')
 
-const sheNames = []
-const heNames = []
+const sheNames = msgCommon.sheNames
+const heNames = msgCommon.heNames
 
-function initialNames() {
-    if (config.base.girlFriendName) {
-        sheNames.push(config.base.girlFriendName)
+async function onHandlerReceiveMsg(bot, message, user) {
+    if (message.substr(0, 1) == '@') {
+        return await msgCommon.relayMessage(bot, message, user)
     }
-    if (config.base.girlFriendNickName) {
-        sheNames.push(config.base.girlFriendNickName)
-    }
-    if (config.base.boyFriendName) {
-        heNames.push(config.base.boyFriendName)
-    }
-    if (config.base.boyFriendNickName) {
-        heNames.push(config.base.boyFriendNickName)
-    }
-}
 
-initialNames()
-
-async function onHandlerReceiveMsg(message, user) {
     return `发送内容: ${message}`
 }
 

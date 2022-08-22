@@ -48,7 +48,7 @@ async function onMessage(msg) {
   const contact = msg.talker() // 发消息人
   const content = msg.text().trim() // 消息内容
   const room = msg.room() // 是否是群消息
-  const alias = (await contact.alias()) || (await contact.name()) // 发消息人备注
+  const alias = (await contact.name()) || (await contact.alias()) // 发消息人备注
   const isText = msg.type() === bot.Message.Type.Text
   // 不处理来自己的消息
   if (msg.self()) {
@@ -69,8 +69,10 @@ async function onMessage(msg) {
   try {
     receivedMsgLog(alias, content)
     await delay(2000)
-    const sayMsg = await onHandlerReceiveMsg(content, alias)
-    contact.say(sayMsg)
+    const sayMsg = await onHandlerReceiveMsg(bot, content, alias)
+    if (sayMsg) {
+      contact.say(sayMsg)
+    }
   } catch (e) {
     console.warn('处理消息出现异常: ', msg)
   }
