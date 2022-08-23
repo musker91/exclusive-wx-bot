@@ -5,10 +5,15 @@ module.exports = {
         girlFriendNickName: '', // 女朋友昵称
         boyFriendName: '',  // 男朋友备注名字
         boyFriendNickName: '',  // 男朋友昵称
+        tianXingApiKey: '', // 天行数据Api Key
+        city: '',   // 目前所在城市
     },
     importantDays: {
-        loveDate: '',   // 在一起的日子，例：1999-01-01
-        sheBirthday: '', // 她的生日，例：1999-01-01
-        heBirthday: '', // 他的生日，例：1999-01-01
+        loveDate: '',   // 在一起的日子，例：1999/01/01
+        sheBirthday: '', // 她的生日，例：1999/01/01
+        heBirthday: '', // 他的生日，例：1999/01/01
+    },
+    schedule: {
+        goodMorning: '0 30 7 * * *'  // 每天早上7点30分
     }
 }

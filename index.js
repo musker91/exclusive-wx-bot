@@ -5,10 +5,11 @@
  */
 const wxCore = require('./core')
 const message = require('./message')
-const { receivedMsgLog, sendMsgLog } = require('./utils')
+const { receivedMsgLog } = require('./utils')
 
 function onLoginInitialTask() {
   console.log('初始化登陆后任务')
+  message.msgSchedule.goodMorningEveryDay()
 }
 
 // 监听对话

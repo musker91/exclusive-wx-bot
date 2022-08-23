@@ -1,4 +1,5 @@
 const msgCommon = require('./common')
+const msgSchedule = require('./schedule')
 
 const sheNames = msgCommon.sheNames
 const heNames = msgCommon.heNames
@@ -24,4 +25,5 @@ module.exports = {
     isItHim,
     sheNames,
     heNames,
+    msgSchedule,
 }
