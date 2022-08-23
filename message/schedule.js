@@ -19,7 +19,7 @@ async function goodMorningEveryDay() {
     let today = await utils.formatDate(new Date()) //获取今天的日期
     let memorialDay = utils.getDay(config.importantDays.loveDate) //获取纪念日天数
 
-    let sayMsg = `我最爱的宝宝，早上好!\n\n${today}\n\n城市：${weather.city}\n天气：${weather.weather}\n最低气温：${weather.lowest}\n最高气温：${weather.highest}\n\n今天是我们恋爱的第${memorialDay}天\n\n${sweetWord}`
+    let sayMsg = `我最疼爱的宝宝，早啊!\n\n${today}\n\n城市：${weather.city}\n天气：${weather.weather}\n最低气温：${weather.lowest}\n最高气温：${weather.highest}\n\n今天是我们恋爱的第${memorialDay}天\n\n${sweetWord}`
 
     try {
       await wxCore.delay(2000)
