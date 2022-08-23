@@ -1,5 +1,6 @@
 const config = require('../config')
 const utils = require('../utils')
+const { bot } = require('../core')
 
 const sheNames = []
 const heNames = []
@@ -21,7 +22,7 @@ function initialNames() {
 
 initialNames()
 
-async function relayMessage(bot, msg, user) {
+async function relayMessage(msg, user) {
     const msgContent = msg.replace('@', '').trim()
     let name = ''
     let nickName = ''
@@ -47,8 +48,15 @@ async function relayMessage(bot, msg, user) {
     return sendMsg
 }
 
+async function pong(user) {
+    const sayMsg = 'pong'
+    utils.sendMsgLog('状态检测', user, sayMsg)
+    return sayMsg
+}
+
 module.exports = {
     relayMessage,
     sheNames,
     heNames,
+    pong,
 }
