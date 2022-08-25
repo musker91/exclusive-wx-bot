@@ -10,6 +10,7 @@ module.exports = {
     },
     importantDays: {
         loveDate: '',   // 在一起的日子，例：1999/01/01
+        meetDate: '', // 第一次见面的日子，例：1999/01/01
         sheBirthday: '', // 她的生日，例：1999/01/01
         heBirthday: '', // 他的生日，例：1999/01/01
     },
