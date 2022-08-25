@@ -8,8 +8,8 @@ async function goodMorningEveryDay() {
   console.log('已设定每日说早安任务')
 
   const taskFunc = async () => {
-    const name = config.base.boyFriendName
-    const nickName = config.base.boyFriendNickName
+    const name = config.base.girlFriendName
+    const nickName = config.base.girlFriendNickName
     let contact =
       (await wxCore.bot.Contact.find({ name: nickName })) ||
       (await wxCore.bot.Contact.find({ alias: name })) // 获取要发送的联系人
