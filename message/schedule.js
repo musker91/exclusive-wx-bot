@@ -20,7 +20,7 @@ async function goodMorningEveryDay() {
     let loveDays = utils.getDay(config.importantDays.loveDate) //在一起的天数
     let meetDays = utils.getDay(config.importantDays.meetDate) //相识的天数
 
-    let sayMsg = `我最爱的宝宝，早啊!\n\n${today}\n\n城市：${weather.city}\n天气：${weather.weather}\n最低气温：${weather.lowest}\n最高气温：${weather.highest}\n\n今天是我们相识的第${meetDays}天\n今天是我们恋爱的第${loveDays}天\n\n${sweetWord}`
+    let sayMsg = `我最爱的宝宝，早安！\n\n${today}\n\n城市：${weather.city}\n天气：${weather.weather}\n最低气温：${weather.lowest}\n最高气温：${weather.highest}\n\n今天是我们相识的第${meetDays}天\n今天是我们恋爱的第${loveDays}天\n\n${sweetWord}`
 
     try {
       await wxCore.delay(2000)
