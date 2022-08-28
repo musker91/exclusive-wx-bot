@@ -14,13 +14,13 @@ async function goodMorningEveryDay() {
       (await wxCore.bot.Contact.find({ name: nickName })) ||
       (await wxCore.bot.Contact.find({ alias: name })) // 获取要发送的联系人
 
-    let sweetWord = await api.getSweetWord() // 获取土味情话
+    let oneWord = await api.getOne() // 获取每日一语
     let weather = await api.getTXweather() //获取天气信息
     let today = await utils.formatDate(new Date()) //获取今天的日期
     let loveDays = utils.getDay(config.importantDays.loveDate) //在一起的天数
     let meetDays = utils.getDay(config.importantDays.meetDate) //相识的天数
 
-    let sayMsg = `我最爱的宝宝，早上好！\n\n${today}\n\n城市：${weather.city}\n天气：${weather.weather}\n最低气温：${weather.lowest}\n最高气温：${weather.highest}\n\n今天是我们相识的第${meetDays}天\n今天是我们恋爱的第${loveDays}天\n\n${sweetWord}`
+    let sayMsg = `亲爱的的宝宝，早啊！\n\n${today}\n\n城市：${weather.city}\n天气：${weather.weather}\n最低气温：${weather.lowest}\n最高气温：${weather.highest}\n\n今天是我们相识的第${meetDays}天\n今天是我们恋爱的第${loveDays}天\n\n${oneWord}`
 
     try {
       await wxCore.delay(2000)
