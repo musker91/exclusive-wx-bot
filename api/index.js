@@ -9,9 +9,9 @@ let uniqueId = md5.update(machineIdSync()).digest('hex') // 获取机器唯一�
 
 const TXHOST = 'http://api.tianapi.com/txapi/' // 天行host
 
+// 获取每日一句
 async function getOne() {
   const oneUrl = 'http://wufazhuce.com/'
-  // 获取每日一句
   try {
     let res = await client.httpClient({
       url: oneUrl,
@@ -51,7 +51,6 @@ async function getTXweather() {
         weather: todayInfo.weather,
         lowest: todayInfo.lowest,
         highest: todayInfo.highest,
-        
       }
       return obj
     }
@@ -60,8 +59,8 @@ async function getTXweather() {
   }
 }
 
+// 获取土味情话
 async function getSweetWord() {
-  // 获取土味情话
   let url = TXHOST + 'saylove/'
   try {
     let content = await client.httpClient({
@@ -81,8 +80,41 @@ async function getSweetWord() {
   }
 }
 
+// 天行聊天机器人
+async function getReply(word) {
+  let url = TXHOST + 'robot/'
+  let content = await client.httpClient({
+    url,
+    method: 'GET',
+    params: {
+      key: config.base.tianXingApiKey,
+      question: word,
+      mode: 1,
+      datatype: 0,
+      userid: uniqueId,
+    },
+  })
+
+  if (content.code === 200) {
+    let res = content.newslist[0]
+    let response = ''
+    if (res.datatype === 'text') {
+      response = res.reply
+    } else if (res.datatype === 'view') {
+      response = `虽然我不太懂你说的是什么，但是感觉很高级的样子，因此我也查找了类似的文章去学习，你觉得有用吗<br>《${content.newslist[0].title}》${content.newslist[0].url}`
+    } else {
+      response =
+        '你太厉害了，说的话把我难倒了，我要去学习了，不然没法回答你的问题'
+    }
+    return response
+  } else {
+    return '我好像迷失在无边的网络中了，你能找回我么'
+  }
+}
+
 module.exports = {
   getOne,
   getTXweather,
-  getSweetWord
+  getSweetWord,
+  getReply,
 }

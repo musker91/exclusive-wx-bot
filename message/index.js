@@ -17,7 +17,7 @@ async function onHandlerReceiveMsg(message, user) {
         return await msgCommon.pong(user)
     }
 
-    return `发送内容: ${message}`
+    return await msgCommon.botAoutReply(message, user)
 }
 
 module.exports = {

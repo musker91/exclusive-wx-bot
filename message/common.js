@@ -1,6 +1,7 @@
 const config = require('../config')
 const utils = require('../utils')
 const { bot } = require('../core')
+const { getReply } = require('../api')
 
 const sheNames = []
 const heNames = []
@@ -54,9 +55,16 @@ async function pong(user) {
     return sayMsg
 }
 
+async function botAoutReply(msg, user) {
+    const sayMsg = getReply(msg)
+    utils.sendMsgLog('天行机器人', user, sayMsg)
+    return sayMsg
+}
+
 module.exports = {
     relayMessage,
     sheNames,
     heNames,
     pong,
+    botAoutReply,
 }

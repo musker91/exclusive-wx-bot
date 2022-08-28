@@ -15,6 +15,12 @@ async function testGetSweetWord() {
     console.log(result)
 }
 
+// async function testGetReply() {
+//     const result = await api.getReply('北京天气')
+//     console.log(result)
+// }
+
 // testGetOne().then((v) => {})
 // testGetTXweather().then((v) => {})
 // testGetSweetWord().then((v) => {})
+// testGetReply().then((v) => {})
