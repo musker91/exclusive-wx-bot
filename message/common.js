@@ -56,7 +56,7 @@ async function pong(user) {
 }
 
 async function botAoutReply(msg, user) {
-    const sayMsg = getReply(msg)
+    const sayMsg = await getReply(msg)
     utils.sendMsgLog('天行机器人', user, sayMsg)
     return sayMsg
 }
