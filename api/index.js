@@ -51,6 +51,8 @@ async function getTXweather() {
         weather: todayInfo.weather,
         lowest: todayInfo.lowest,
         highest: todayInfo.highest,
+        wind: `${todayInfo.wind} ${todayInfo.windsc}`,
+        status: todayInfo.weatherimg.split('.')[0]
       }
       return obj
     }
@@ -74,6 +76,27 @@ async function getSweetWord() {
       return str
     } else {
       return '你很像一款游戏。我的世界'
+    }
+  } catch (err) {
+    console.log('获取接口失败', err)
+  }
+}
+
+// 获取生活窍门
+async function getQiaoMen() {
+  let url = TXHOST + 'qiaomen/'
+  try {
+    let content = await client.httpClient({
+      url,
+      method: 'GET',
+      params: { key: config.base.tianXingApiKey },
+    })
+    if (content.code === 200) {
+      let sweet = content.newslist[0].content
+      let str = sweet.replace('\r\n', '<br>')
+      return str
+    } else {
+      return '人生的乐趣就在于享受生活'
     }
   } catch (err) {
     console.log('获取接口失败', err)
@@ -117,4 +140,5 @@ module.exports = {
   getTXweather,
   getSweetWord,
   getReply,
+  getQiaoMen,
 }

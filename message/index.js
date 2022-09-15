@@ -16,6 +16,9 @@ async function onHandlerReceiveMsg(message, user) {
     if (message === 'ping') {
         return await msgCommon.pong(user)
     }
+    if (message === '早') {
+        return await msgCommon.goodMorning()
+    }
 
     return await msgCommon.botAoutReply(message, user)
 }

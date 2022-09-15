@@ -1,7 +1,8 @@
 const config = require('../config')
 const utils = require('../utils')
-const { bot } = require('../core')
+const { bot, delay } = require('../core')
 const { getReply } = require('../api')
+const api = require('../api')
 
 const sheNames = []
 const heNames = []
@@ -61,10 +62,42 @@ async function botAoutReply(msg, user) {
     return sayMsg
 }
 
+async function goodMorning() {
+    let contactGirl =
+        (await bot.Contact.find({ name: config.base.girlFriendNickName })) ||
+        (await bot.Contact.find({ alias: config.base.girlFriendName })) // 获取要发送的联系人
+
+    let contactBoy =
+        (await bot.Contact.find({ name: config.base.boyFriendNickName })) ||
+        (await bot.Contact.find({ alias: config.base.boyFriendName })) // 获取要发送的联系人
+    let qiaomen = await api.getQiaoMen() // 获取生活窍门
+    let weather = await api.getTXweather() //获取天气信息
+    let today = await utils.formatDate(new Date()) //获取今天的日期
+    let loveDays = utils.getDay(config.importantDays.loveDate) //在一起的天数
+    let meetDays = utils.getDay(config.importantDays.meetDate) //相识的天数
+
+    let sayMsg = `早安，我的思思小宝贝！\n\n📆${today}\n\n🏘城市：${weather.city}\n${utils.getWeatherEmoji(weather.status)}天气：${weather.weather}\n🌡气温：${weather.lowest}～${weather.highest}\n💨风向：${weather.wind}\n\n👫今天是我们相识的第${meetDays}天\n💕今天是我们恋爱的第${loveDays}天\n\n${qiaomen}`
+
+    try {
+        if (contactGirl) { await contactGirl.say(sayMsg) // 发送消息
+            utils.sendMsgLog('每日早安', config.base.girlFriendNickName, sayMsg)
+        }
+        await delay(2000)
+        if (contactBoy) {
+            contactBoy.say(sayMsg)
+            utils.sendMsgLog('每日早安', config.base.boyFriendNickName, sayMsg)
+        }
+    } catch (e) {
+        console.log('每日早安问候失败, err: ', e)
+    }
+    return ''
+}
+
 module.exports = {
     relayMessage,
     sheNames,
     heNames,
     pong,
     botAoutReply,
+    goodMorning,
 }

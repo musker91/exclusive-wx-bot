@@ -2,6 +2,7 @@
  * exclusiv-wx-bot
  *  - https://github.com/spdir/exclusive-wx-bot
  * branch https://github.com/gengchen528/wechatBot
+ * emoji: https://getemoji.com/
  */
 const wxCore = require('./core')
 const message = require('./message')
@@ -43,7 +44,7 @@ async function onMessage(msg) {
       contact.say(sayMsg)
     }
   } catch (e) {
-    console.warn('处理消息出现异常: ', msg)
+    console.warn('处理消息出现异常: ', e)
   }
 }
 

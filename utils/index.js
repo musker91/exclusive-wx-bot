@@ -56,9 +56,32 @@ function formatDate(date) {
   return year + '-' + month + '-' + day + ' ' + hour + ':' + min + ' ' + str
 }
 
+function getWeatherEmoji(status) {
+  if (status == 'qing') {
+    return '☀️'
+  }
+  if (status == 'duoyun') {
+    return '⛅️'
+  }
+  if (status == 'yin') {
+    return '☁️'
+  }
+  if (status.include('yu')) {
+    return '⛈'
+  }
+  if (status.include('xue')) {
+    return '🌨'
+  }
+  if (status.include('feng')) {
+    return '🌬'
+  }
+  return '🌈'
+}
+
 module.exports = {
   receivedMsgLog,
   sendMsgLog,
   getDay,
   formatDate,
+  getWeatherEmoji
 }
