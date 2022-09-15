@@ -76,7 +76,7 @@ async function goodMorning() {
     let loveDays = utils.getDay(config.importantDays.loveDate) //在一起的天数
     let meetDays = utils.getDay(config.importantDays.meetDate) //相识的天数
 
-    let sayMsg = `早安，我的思思小宝贝！\n\n📆${today}\n\n🏘城市：${weather.city}\n${utils.getWeatherEmoji(weather.status)}天气：${weather.weather}\n🌡气温：${weather.lowest}～${weather.highest}\n💨风向：${weather.wind}\n\n👫今天是我们相识的第${meetDays}天\n💕今天是我们恋爱的第${loveDays}天\n\n${qiaomen}`
+    let sayMsg = `早安，我的思思大宝贝！\n\n📆${today}\n\n🏘城市：${weather.city}\n${utils.getWeatherEmoji(weather.status)}天气：${weather.weather}\n🌡气温：${weather.lowest}～${weather.highest}\n💨风向：${weather.wind}\n\n👫今天是我们相识的第${meetDays}天\n💕今天是我们恋爱的第${loveDays}天\n\n${qiaomen}`
 
     try {
         if (contactGirl) { await contactGirl.say(sayMsg) // 发送消息
