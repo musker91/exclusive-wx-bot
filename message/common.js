@@ -93,6 +93,19 @@ async function goodMorning() {
     return ''
 }
 
+async function updateCity(msg, user) {
+    const msgContent = msg.replace('#', '').trim()
+    if (msgContent == '?') {
+        const sendMsg = `当前城市：${config.base.city}`
+        utils.sendMsgLog('城市查询', user, sendMsg)
+        return sendMsg
+    }
+    config.base.city = msgContent
+    const sendMsg = `修改后城市：${config.base.city}`
+    utils.sendMsgLog('修改城市', user, sendMsg)
+    return sendMsg
+}
+
 module.exports = {
     relayMessage,
     sheNames,
@@ -100,4 +113,5 @@ module.exports = {
     pong,
     botAoutReply,
     goodMorning,
+    updateCity,
 }

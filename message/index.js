@@ -19,6 +19,9 @@ async function onHandlerReceiveMsg(message, user) {
     if (message === '早') {
         return await msgCommon.goodMorning()
     }
+    if (message.substr(0, 1) == '#') {
+        return await msgCommon.updateCity(message, user)
+    }
 
     return await msgCommon.botAoutReply(message, user)
 }
