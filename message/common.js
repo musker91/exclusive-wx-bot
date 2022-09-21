@@ -74,29 +74,29 @@ async function goodMorning() {
     try {
         let qiaomen = await api.getQiaoMen() // 获取生活窍门
         let weather = await api.getTXweather() //获取天气信息
-        let today = await utils.formatDate(new Date()) //获取今天的日期
+        console.log("ddbug", weather)
+        if (!qiaomen || !weather) {
+            throw new Error('api request fail', weather, qiaomen)
+        }
+        let today = utils.formatDate(new Date()) //获取今天的日期
         let loveDays = utils.getDay(config.importantDays.loveDate) //在一起的天数
         let meetDays = utils.getDay(config.importantDays.meetDate) //相识的天数
         let sayMsg = `早安，我的思思大宝贝！\n\n📆${today}\n\n🏘城市：${weather.city
             }\n${utils.getWeatherEmoji(weather.status)}天气：${weather.weather
             }\n🌡气温：${weather.lowest}～${weather.highest}\n💨风向：${weather.wind
             }\n\n👫今天是我们相识的第${meetDays}天\n💕今天是我们恋爱的第${loveDays}天\n\n${qiaomen}`
-        try {
-            if (contactGirl) {
-                await contactGirl.say(sayMsg) // 发送消息
-                utils.sendMsgLog('每日早安', config.base.girlFriendNickName, sayMsg)
-            }
-            await delay(2000)
-            if (contactBoy) {
-                contactBoy.say(sayMsg)
-                utils.sendMsgLog('每日早安', config.base.boyFriendNickName, sayMsg)
-            }
-        } catch (e) {
-            console.log('发生每日早安问候失败, err: ', e)
+
+        if (contactGirl) {
+            await contactGirl.say(sayMsg) // 发送消息
+            utils.sendMsgLog('每日早安', config.base.girlFriendNickName, sayMsg)
+        }
+        await delay(2000)
+        if (contactBoy) {
+            contactBoy.say(sayMsg)
+            utils.sendMsgLog('每日早安', config.base.boyFriendNickName, sayMsg)
         }
     } catch (e) {
         console.log('每日早安问候失败, err: ', e)
-        goodMorning()
     }
     return ''
 }

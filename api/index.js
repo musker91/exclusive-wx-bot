@@ -27,7 +27,7 @@ async function getOne() {
     return todayOne
   } catch (err) {
     console.log('获取每日一句出错', err)
-    return err
+    return null
   }
 }
 
@@ -58,6 +58,7 @@ async function getTXweather() {
     }
   } catch (err) {
     console.log('请求天气失败', err)
+    return null
   }
 }
 
@@ -79,6 +80,7 @@ async function getSweetWord() {
     }
   } catch (err) {
     console.log('获取接口失败', err)
+    return null
   }
 }
 
@@ -100,6 +102,7 @@ async function getQiaoMen() {
     }
   } catch (err) {
     console.log('获取接口失败', err)
+    return null
   }
 }
 

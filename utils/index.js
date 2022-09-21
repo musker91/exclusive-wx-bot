@@ -57,6 +57,9 @@ function formatDate(date) {
 }
 
 function getWeatherEmoji(status) {
+  if (!status) {
+    return '🌈'
+  }
   if (status == 'qing') {
     return '☀️'
   }
@@ -66,13 +69,13 @@ function getWeatherEmoji(status) {
   if (status == 'yin') {
     return '☁️'
   }
-  if (status.include('yu')) {
+  if (status.includes('yu')) {
     return '⛈'
   }
-  if (status.include('xue')) {
+  if (status.includes('xue')) {
     return '🌨'
   }
-  if (status.include('feng')) {
+  if (status.includes('feng')) {
     return '🌬'
   }
   return '🌈'
