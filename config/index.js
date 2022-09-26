@@ -16,5 +16,10 @@ module.exports = {
     },
     schedule: {
         goodMorning: '0 30 7 * * *'  // 每天早上7点30分
+    },
+    login: {
+        noticeName: '', // 通知人备注名字
+        noticeNickName: '', // 通知人昵称
+        dingdingToken: '',
     }
 }
