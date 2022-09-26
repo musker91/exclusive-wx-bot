@@ -138,10 +138,26 @@ async function getReply(word) {
   }
 }
 
+async function dingDingMessage(msg) {
+  let url = 'https://oapi.dingtalk.com/robot/send?access_token=' + config.base.dingdingToken
+  let content = await client.httpClient({
+    url,
+    method: 'POST',
+    json: true,
+    data: msg
+  })
+  if (content.errcode === 0) {
+    return 'Ding Ding 发送成功'
+  } else {
+    return 'Ding Ding 发送失败'
+  }
+}
+
 module.exports = {
   getOne,
   getTXweather,
   getSweetWord,
   getReply,
   getQiaoMen,
+  dingDingMessage,
 }

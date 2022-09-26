@@ -7,6 +7,7 @@ module.exports = {
         boyFriendNickName: '',  // 男朋友昵称
         tianXingApiKey: '', // 天行数据Api Key
         city: '',   // 目前所在城市
+        dingdingToken: '', // 钉钉Token
     },
     importantDays: {
         loveDate: '',   // 在一起的日子，例：1999/01/01
@@ -16,10 +17,5 @@ module.exports = {
     },
     schedule: {
         goodMorning: '0 30 7 * * *'  // 每天早上7点30分
-    },
-    login: {
-        noticeName: '', // 通知人备注名字
-        noticeNickName: '', // 通知人昵称
-        dingdingToken: '',
     }
 }
