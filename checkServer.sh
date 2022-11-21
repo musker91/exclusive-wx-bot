@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 30 * * * * base /opt/work/exclusive-wx-bot/checkServer.sh
+# 30 * * * * bash /opt/work/exclusive-wx-bot/checkServer.sh
 
 WORK_PATH='/opt/work/exclusive-wx-bot'
 DING_DING_TOKEN=''
